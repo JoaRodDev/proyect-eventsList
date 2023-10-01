@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import EventItem from './components'
-import eventsJSON from "../../data/events.json"
+import LoadSpiner from '../LoadSpiner';
 
 
-function Events({searchTerm}) {
-    const [data] = useState(eventsJSON)
-
-    const events = data._embedded.events;
-
+function Events({searchTerm, events}) {
     const handleEventItemClick = (id) => {
         console.log("evento clickeado: "+ id)
     }
@@ -30,12 +26,12 @@ function Events({searchTerm}) {
         ));
     };
 
-  return (
-    <div>
-        <p>Eventos</p>
-        {renderEvents()}
-    </div>
-  )
+    return (
+        <div>
+            <p>Eventos</p>
+            {renderEvents()}
+        </div>
+    )
 }
 
 export default Events

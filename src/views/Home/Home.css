@@ -1,0 +1,25 @@
+.pagination_events{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination_next,
+.pagination_previous{
+    font-size: 24px;
+    cursor: pointer;
+}
+.pagination_page{
+    font-size: 20px;
+    padding: 0px 8px;
+    cursor: pointer;
+    font-weight: 700;
+}
+.pagination_active{
+    background-color: aliceblue;
+    color: black;
+    border-radius: 20px;
+}
+.pagination_disabled{
+    cursor: not-allowed;
+}

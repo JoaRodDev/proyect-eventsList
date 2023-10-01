@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function EventItem({info, name, image, onEventClick, id}) {
   return (
@@ -8,8 +9,11 @@ function EventItem({info, name, image, onEventClick, id}) {
         <p>{info}</p>
         <button onClick={(evt) => {
             evt.stopPropagation(),
-            onEventClick(id)}}
-            > Ver más</button>
+            onEventClick(id)}}> 
+              <Link to={`/detail/${id}`}>
+                See More
+              </Link>
+            </button>
     </div>
   )
 }
