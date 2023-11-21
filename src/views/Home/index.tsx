@@ -43,6 +43,7 @@ function Home() {
                 previousClassName=''
                 pageClassName='pagination_page'
                 activeClassName='pagination_active'
+                disabledClassName='pagination_disabled'
                 breakLabel="..."
                 nextLabel=">"
                 onPageChange={handlePageClick}

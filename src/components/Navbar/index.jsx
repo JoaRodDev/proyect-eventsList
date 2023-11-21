@@ -1,12 +1,12 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState, useRef } from 'react'
 
-const Navbar = forwardRef(({onSearch}, ref) => {
+const Navbar = forwardRef(( {onSearch}, ref) => {
   const [search, setSearch] = useState("")
 
   useEffect(() => {
     //
   }, [search, onSearch])
-  
+
   const handleInputChange = (evt) =>{
     setSearch(evt.target.value)
   }
@@ -14,19 +14,19 @@ const Navbar = forwardRef(({onSearch}, ref) => {
   const handleInputKeyDown = (evt) => {
     if(evt.key === "Enter"){
       onSearch(search)
-    } 
+    }
   }
 
   useImperativeHandle(ref, () => ({
     search,
-  }))
+  }));
 
   return (
     <div ref={ref}>
         <p>Boletera</p>
-        <input 
-        placeholder='Busca tu evento favorito' 
-        type="text" 
+        <input
+        placeholder='Busca tu evento favorito'
+        type="text"
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
         value={search}

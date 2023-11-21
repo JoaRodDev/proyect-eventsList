@@ -13,7 +13,7 @@ function Detail() {
     useEffect(() => {
         const fetchEventData = async () => {
             try {
-                const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${detailId}?apikey=PJJSX2JIhkbejyMMk1QIkJFaY0rwSjto`)
+                const response = await fetch(`https://app.ticketmaster.com/discovery/v2/events/${detailId}?apikey=${import.meta.env.VITE_TICKETMASTER_APIKEY}`)
                 const data = await response.json();
 
                 setEventData(data);
@@ -36,16 +36,22 @@ function Detail() {
         <div>Error</div>
     }
 
-    console.log(format(parseISO(new Date(eventData.dates?.start.dateTime)), "d LLLL yyyy H:mm", { locale: es }))
-
+    console.log(eventData)
     return (
         <div className="container_detail" >
             <div className='container_infoDetail'>
-                <img src={eventData.images?.[0].url} alt="" />
+                <img className="imageEvent_infoDetail" src={eventData.images?.[0].url} alt="" />
                 <h3>{eventData.name}</h3>
                 <p>{eventData.info}</p>
-                {/* {eventData.dates?.start.dateTime ? <p>{format(new Date(eventData.dates?.start.dateTime), "d LLLL yyyy H:mm")}hrs</p> : null} */}
+                {eventData.dates?.start.dateTime ? <p>{format(new Date(eventData.dates?.start.dateTime), "d LLLL yyyy H:mm", { locale: es })}hrs</p> : null}
             </div>
+            <div className='container_seatInfo'>
+                <h5>Mapa del evento</h5>
+                <img src={eventData.seatmap?.staticUrl} alt="Seatmap event" />
+                <p>{eventData.placeNote}</p>
+                <p>Prices ${eventData.priceRanges?.[0].min} - ${eventData.priceRanges?.[0].max} {eventData.priceRanges?.[0].currency}</p>
+            </div>
+            <a href={eventData.url}>Go get your tickets</a>
         </div>
     )
 }
